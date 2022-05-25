@@ -1,25 +1,76 @@
-import logo from './logo.svg';
-import './App.css';
+import axios from "axios";
+import Randomstring from "randomstring";
+import React, { Component, useEffect, useState } from "react";
+import { ReactSession } from 'react-client-session';
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import Cookies from 'universal-cookie';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import CreateRoomPage from "./components/CreateRoomPage";
+import DashboardPage from "./components/DashboardPage";
+import LoginPage from "./components/LoginPage";
+import Room from "./components/Room";
+import RoomJoinPage from "./components/RoomJoinPage";
+import baseUrl from "./global";
+
+const App = () => {
+
+  const[name,setName] = useState("");
+  const[isLogged, setisLogged] = useState("false")
+  function checkLogin() {
+    let requestOptions = {
+      method: "POST",
+      credentials:"include",
+      crossDomain: "true",
+      headers: { "Content-Type": "application/json"},
+      body: {},
+    };
+    fetch(baseUrl+"/api/check-login", requestOptions)
+      .then((response) => {
+        if (response.status == 200) {
+          console.log('200')
+          setisLogged("true")
+          response.json().then((data)=>setName(data.name))
+        } else {
+          console.log(response.status)
+          setisLogged("false")
+          console.log('logged returned false')
+        }
+      })
+  }
+  useEffect(() => {
+    checkLogin();
+    return () => {
+    }
+  }, [])
+
+  console.log('started render')
+  console.log(isLogged)
+  if(isLogged == "true"){
+    return (
+      <Router>
+        <Routes>
+          <Route exact path="/" element={<DashboardPage name={name} />} />
+          <Route path="/join" element={<RoomJoinPage />} />
+          <Route path="/create" element={<CreateRoomPage />} />
+          <Route exact path="/room/:roomCode" element={<Room />} /> 
+        </Routes>
+      </Router>
+    )
+  }
+
+  else{
+    return (
+      <Router>
+        <Routes>
+          <Route exact path="/" element={<LoginPage />} />
+          <Route path="/join" element={<RoomJoinPage />} />
+          <Route path="/create" element={<CreateRoomPage />} />
+          <Route exact path='/room/:roomCode' element={<Room/> } />
+        </Routes>
+      </Router>
+    );
+
+  }
 }
-
+ 
 export default App;
