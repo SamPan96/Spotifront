@@ -1,0 +1,10 @@
+version: '3.8'
+
+services:
+  spotifront:
+    container_name: spotifront
+    build: ./
+    ports:
+      - '3000:3000'
+    # sdin_open: true
+    tty: true

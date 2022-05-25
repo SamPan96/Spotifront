@@ -1,0 +1,138 @@
+import Button from "@material-ui/core/Button";
+import Grid from "@material-ui/core/Grid";
+import TextField from "@material-ui/core/TextField";
+import Typography from "@material-ui/core/Typography";
+import * as React from 'react';
+import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+
+import baseUrl from "../global";
+import LoginPage from "./LoginPage";
+import Room from './Room';
+
+const RoomJoinPage = () => {
+  const [isLogged, setIsLogged] = useState("false");
+  const [roomCode, setRoomCode] = useState("");
+  const [error, setError] = useState("");
+  const navigate = useNavigate(); 
+
+
+  
+
+  function checkLogin() {
+    let requestOptions = {
+      method: "POST",
+      credentials: 'include',
+      crossorigin: 'true',
+      headers: { "Content-Type": "application/json" },
+      body: {},
+    };
+    if (isLogged=="true") {
+      return;
+    } else {
+      fetch(baseUrl+"/api/check-login", requestOptions)
+      .then((response) => {
+        if (response.status == 200) {
+          setIsLogged("true");
+        } else {
+          setIsLogged("false");
+        }
+      })
+      .catch((error)=>console.log(error));
+    }
+  }
+
+  function roomButtonPressed() {
+    let requestOptions = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        code: roomCode,
+      }),
+    };
+    fetch(baseUrl+"/api/join-room", requestOptions)
+      .then((response) => {
+        if (!response.ok) {
+          return response.json().then((data) => {
+            throw data;
+          });
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log("inside second then");
+        navigate("/room/"+roomCode)
+        
+      })
+      .catch((e) => {
+        console.log("inside catch");
+        console.log(e);
+        setError(e.message);
+      });
+  }
+
+  function handleTextFieldChange(e) {
+    setRoomCode(e.target.value);
+    setError("")
+  }
+
+  useEffect(() => {
+    checkLogin();
+    return () => {
+      
+    };
+  }, []);
+
+  console.log("started rendering Join Page");
+  console.log("login checked");
+  if (isLogged == "true") {
+      console.log("no room retrieved");
+      return (
+        <div>
+          <Grid container spacing={1}>
+            <Grid item xs={12} align="center">
+              <Typography variant="h4" component="h4">
+                Join a Room
+              </Typography>
+            </Grid>
+            <Grid item xs={12} align="center">
+              <TextField
+                error={error}
+                label="Code"
+                placeholder="Enter a Room Code"
+                value={roomCode}
+                helperText={error}
+                variant="outlined"
+                onChange={handleTextFieldChange}
+              />
+            </Grid>
+            <Grid item xs={12} align="center">
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={roomButtonPressed}
+              >
+                Enter Room
+              </Button>
+            </Grid>
+            <Grid item xs={12} align="center">
+              <Button
+                variant="contained"
+                color="secondary"
+                to="/"
+                component={Link}
+              >
+                Back
+              </Button>
+            </Grid>
+          </Grid>
+        </div>
+      );
+  } 
+  else {
+    console.log("isLogged = "+isLogged)
+    return <LoginPage />;
+  }
+};
+
+export default RoomJoinPage;
