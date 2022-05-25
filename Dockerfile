@@ -6,7 +6,7 @@ COPY package.json ./
 RUN npm install --legacy-peer-deps
 COPY . .
 EXPOSE 3000
-CMD ['npm','start']
+CMD ['npm','run','build']
 
 
 # RUN npm install react-scripts@3.4.1 -g --silent
