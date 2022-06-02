@@ -1,3 +1,4 @@
+import { makeStyles } from "@material-ui/styles";
 import { CircularProgress } from "@mui/material";
 import { Card } from "@mui/material";
 import { CardActions } from "@mui/material";
@@ -5,7 +6,6 @@ import { CardContent } from "@mui/material";
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
-import { makeStyles } from "@material-ui/styles";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -42,7 +42,7 @@ const DashboardPage = () => {
     const requestOptions = {
       method: "GET",   
       crossDomain: "true",
-      credentials:"include",
+      credentials:"same-origin",
       headers: { "Content-Type": "application/json" },
     };
     fetch(baseUrl+"/api/person-rooms",requestOptions)

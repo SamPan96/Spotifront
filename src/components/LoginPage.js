@@ -4,9 +4,8 @@ import FormHelperText from "@mui/material/FormHelperText";
 import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
-import React, { useState } from "react";
 import Cookies from 'js-cookie'
-
+import React, { useState } from "react";
 
 import baseUrl from "../global";
 import App from "./../App"
@@ -23,7 +22,7 @@ const LoginPage = () => {
   function handleLoginButtonPressed(){
     const requestOptions = {
       method: "POST",
-      credentials:"include",
+      credentials:"same-origin",
       crossDomain: "true",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
