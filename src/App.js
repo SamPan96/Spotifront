@@ -20,6 +20,7 @@ const App = () => {
     let requestOptions = {
       method: "POST",
       credentials:"include",
+      crossDomain: "true",
       headers: { "Content-Type": "application/json"},
       body: {},
     };
@@ -30,8 +31,6 @@ const App = () => {
           setisLogged("true")
           response.json().then((data)=>setName(data.name))
         } else {
-          Cookies.set('sessionid', response.headers['sessionid'])
-          console.log(response.headers['sessionid'])
           console.log(response.status)
           setisLogged("false")
           console.log('logged returned false')

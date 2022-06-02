@@ -32,7 +32,6 @@ const LoginPage = () => {
     fetch(baseUrl+"/api/create-person", requestOptions)
     .then(
       (response)=>{
-      Cookies.set('sessionid', response.headers['sessionid'])
       return response.json()}
     ).then((data) =>{
       setname(data.name);
