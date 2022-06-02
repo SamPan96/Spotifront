@@ -57,7 +57,7 @@ const CreateRoomPage = (props) => {
   }
 
   function handleGuestCanPauseChange(e) {
-    setguestCanPause(e.target.value ==== "true" ? true : false);
+    setguestCanPause(e.target.value === "true" ? true : false);
   }
 
   function handleRoomButtonPressed() {
