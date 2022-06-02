@@ -23,6 +23,7 @@ const LoginPage = () => {
     const requestOptions = {
       method: "POST",
       credentials:"include",
+      crossDomain: "true",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         name: name

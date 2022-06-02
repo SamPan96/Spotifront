@@ -42,6 +42,7 @@ const DashboardPage = () => {
     const requestOptions = {
       method: "GET",   
       credentials:"include",
+      crossDomain: "true",
       headers: { "Content-Type": "application/json" },
     };
     fetch(baseUrl+"/api/person-rooms",requestOptions)
