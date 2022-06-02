@@ -31,7 +31,7 @@ const App = () => {
           setisLogged("true")
           response.json().then((data)=>setName(data.name))
         } else {
-          Cookies.set('sessionid', response.headers['sessionid'])
+          // Cookies.set('sessionid', response.headers['sessionid'])
           console.log(response.headers['sessionid'])
           console.log(response.status)
           setisLogged("false")
