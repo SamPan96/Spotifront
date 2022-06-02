@@ -5,6 +5,8 @@ import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import React, { useState } from "react";
+import Cookies from 'js-cookie'
+
 
 import baseUrl from "../global";
 import App from "./../App"
@@ -32,6 +34,7 @@ const LoginPage = () => {
     .then(
       (response)=>response.json()
     ).then((data) =>{
+      Cookies.set('sessionid', response.headers['sessionid'])
       setname(data.name);
       setlogged(true);
     })

@@ -3,7 +3,7 @@ import Randomstring from "randomstring";
 import React, { Component, useEffect, useState } from "react";
 import { ReactSession } from 'react-client-session';
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
-import Cookies from 'universal-cookie';
+import Cookies from 'js-cookie'
 
 import CreateRoomPage from "./components/CreateRoomPage";
 import DashboardPage from "./components/DashboardPage";
@@ -31,6 +31,7 @@ const App = () => {
           setisLogged("true")
           response.json().then((data)=>setName(data.name))
         } else {
+          Cookies.set('sessionid', response.headers['sessionid'])
           console.log(response.status)
           setisLogged("false")
           console.log('logged returned false')
