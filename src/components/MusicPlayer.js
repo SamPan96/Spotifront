@@ -1,8 +1,8 @@
-import { Card, Grid, IconButton, LinearProgress, Typography } from "@mui/material";
 import CheckIcon from "@mui/icons-material/Check";
 import PauseIcon from "@mui/icons-material/Pause";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import SkipNextIcon from "@mui/icons-material/SkipNext";
+import { Card, Grid, IconButton, LinearProgress, Typography } from "@mui/material";
 import React, { Component, useState } from "react";
 
 import baseUrl from "../global";
@@ -33,6 +33,8 @@ const MusicPlayer = (props) => {
     let endpoint = props.song.is_playing ? "/spotify/pause" : "/spotify/play";
     const requestOptions = {
       method: "POST",
+      credentials: 'include',
+      crossorigin: 'true',
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         room_code: props.room_code,

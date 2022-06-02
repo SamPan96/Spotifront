@@ -45,6 +45,8 @@ const RoomJoinPage = () => {
   function roomButtonPressed() {
     let requestOptions = {
       method: "POST",
+      credentials: 'include',
+      crossorigin: 'true',
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         code: roomCode,

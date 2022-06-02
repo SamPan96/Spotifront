@@ -1,11 +1,11 @@
+import { mergeClasses } from "@material-ui/styles";
+import { makeStyles } from "@material-ui/styles";
 import { Grid, responsiveFontSizes } from "@mui/material";
 import { Card } from "@mui/material";
 import { CardActions } from "@mui/material";
 import { CardContent } from "@mui/material";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import { mergeClasses } from "@material-ui/styles";
-import { makeStyles } from "@material-ui/styles";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
@@ -92,7 +92,15 @@ export default function Room(props) {
   }
 
   function retrieveRoom() {
-    fetch(baseUrl+"/api/get-room" + "?code=" + roomCode)
+    let requestOptions = {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+      credentials:"include",
+      crossDomain: "true",
+      body: {},
+    };
+  
+    fetch(baseUrl+"/api/get-room" + "?code=" + roomCode.at,requestOptions)
       .then((response) => {
         return response.json();
       })
@@ -125,7 +133,15 @@ export default function Room(props) {
 
 
   function getCurrentSong() {
-    fetch(baseUrl+"/spotify/current-song?room_code="+roomCode )
+    let requestOptions = {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+      credentials:"include",
+      crossDomain: "true",
+      body: {},
+    };
+  
+    fetch(baseUrl+"/spotify/current-song?room_code="+roomCode,requestOptions)
       .then((response) => {
         if (!response.ok) {
         } else {
