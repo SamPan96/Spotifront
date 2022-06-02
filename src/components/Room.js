@@ -99,7 +99,6 @@ export default function Room(props) {
       headers: { "Content-Type": "application/json" },
       credentials:"include",
       crossDomain: "true",
-      body: {},
     };
   
     fetch(baseUrl+"/api/get-room" + "?code=" + roomCode.at,requestOptions)
