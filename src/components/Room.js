@@ -46,8 +46,8 @@ export default function Room(props) {
   function checkLogin() {
     let requestOptions = {
       method: "POST",
-      credentials: 'include',
-      crossorigin: 'true',
+      credentials:"include",
+      crossDomain: "true",  
       headers: { "Content-Type": "application/json" },
       body: {},
     };
@@ -94,6 +94,7 @@ export default function Room(props) {
   }
 
   function retrieveRoom() {
+
     let requestOptions = {
       method: "GET",
       headers: { "Content-Type": "application/json" },
@@ -101,7 +102,7 @@ export default function Room(props) {
       crossDomain: "true",
     };
   
-    fetch(baseUrl+"/api/get-room" + "?code=" + roomCode.at,requestOptions)
+    fetch(baseUrl+"/api/get-room" + "?code=" + roomCode,requestOptions)
       .then((response) => {
         return response.json();
       })
@@ -134,15 +135,14 @@ export default function Room(props) {
 
 
   function getCurrentSong() {
+
     let requestOptions = {
       method: "GET",
       headers: { "Content-Type": "application/json" },
       credentials:"include",
       crossDomain: "true",
-      body: {},
     };
-  
-    fetch(baseUrl+"/spotify/current-song?room_code="+roomCode,requestOptions)
+    fetch(baseUrl+"/spotify/current-song?room_code="+roomCode,requestOptions )
       .then((response) => {
         if (!response.ok) {
         } else {
