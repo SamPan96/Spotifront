@@ -1,8 +1,8 @@
-import { Card, Grid, IconButton, LinearProgress, Typography } from "@material-ui/core";
-import CheckIcon from "@material-ui/icons/Check";
-import PauseIcon from "@material-ui/icons/Pause";
-import PlayArrowIcon from "@material-ui/icons/PlayArrow";
-import SkipNextIcon from "@material-ui/icons/SkipNext";
+import { Card, Grid, IconButton, LinearProgress, Typography } from "@mui/material";
+import CheckIcon from "@mui/icons-material/Check";
+import PauseIcon from "@mui/icons-material/Pause";
+import PlayArrowIcon from "@mui/icons-material/PlayArrow";
+import SkipNextIcon from "@mui/icons-material/SkipNext";
 import React, { Component, useState } from "react";
 
 import baseUrl from "../global";
