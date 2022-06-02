@@ -1,10 +1,10 @@
-import { CircularProgress } from "@material-ui/core";
-import { Card } from "@material-ui/core";
-import { CardActions } from "@material-ui/core";
-import { CardContent } from "@material-ui/core";
-import Button from "@material-ui/core/Button";
-import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
+import { CircularProgress } from "@mui/material";
+import { Card } from "@mui/material";
+import { CardActions } from "@mui/material";
+import { CardContent } from "@mui/material";
+import Button from "@mui/material/Button";
+import Grid from "@mui/material/Grid";
+import Typography from "@mui/material/Typography";
 import { makeStyles } from "@material-ui/styles";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
@@ -24,7 +24,7 @@ const DashboardPage = () => {
       })
       .then((data) => {
         console.log(data)
-        if (data.status == false) {
+        if (data.status === false) {
           console.log('in here')
           fetch(baseUrl+"/spotify/get-auth-url")
             .then((response) => {
@@ -57,7 +57,7 @@ const DashboardPage = () => {
             createdAt: data[index].created_at,
             guestCanPause: data[index].guest_can_pause,
             votesToSkip: data[index].votes_to_skip,
-            isHost: data[index].host == data[0].uid,
+            isHost: data[index].host === data[0].uid,
             hostName: data[index].host_name,
             guests: data[index].guests
               .map((element) => element.name)
@@ -102,7 +102,7 @@ const DashboardPage = () => {
   const classes = useStyles;
   console.log(rooms);
 
-  if (name == "") {
+  if (name === "") {
     return <CircularProgress color="primary" />;
   } else {
     var cards = rooms.map((room) => {
@@ -120,7 +120,7 @@ const DashboardPage = () => {
               <Typography variant="h5" component="h2">
                 Host: {room.hostName}
               </Typography>
-              {room.guests.length == 0 && (
+              {room.guests.length === 0 && (
                 <Typography variant="h6" component="h2">
                   No Guests
                 </Typography>
@@ -130,7 +130,7 @@ const DashboardPage = () => {
                   variant="h6"
                   component="h2"
                   className={
-                    room.guests.length == 0 ? classes.hide : classes.show
+                    room.guests.length === 0 ? classes.hide : classes.show
                   }
                 >
                   Guests: {room.guests.toString()}

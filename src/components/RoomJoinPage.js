@@ -27,12 +27,12 @@ const RoomJoinPage = () => {
       headers: { "Content-Type": "application/json" },
       body: {},
     };
-    if (isLogged=="true") {
+    if (isLogged==="true") {
       return;
     } else {
       fetch(baseUrl+"/api/check-login", requestOptions)
       .then((response) => {
-        if (response.status == 200) {
+        if (response.status === 200) {
           setIsLogged("true");
         } else {
           setIsLogged("false");
@@ -85,7 +85,7 @@ const RoomJoinPage = () => {
 
   console.log("started rendering Join Page");
   console.log("login checked");
-  if (isLogged == "true") {
+  if (isLogged === "true") {
       console.log("no room retrieved");
       return (
         <div>

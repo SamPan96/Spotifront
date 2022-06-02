@@ -1,9 +1,9 @@
-import Button from "@material-ui/core/Button";
-import FormControl from "@material-ui/core/FormControl";
-import FormHelperText from "@material-ui/core/FormHelperText";
-import Grid from "@material-ui/core/Grid";
-import TextField from "@material-ui/core/TextField";
-import Typography from "@material-ui/core/Typography";
+import Button from "@mui/material/Button";
+import FormControl from "@mui/material/FormControl";
+import FormHelperText from "@mui/material/FormHelperText";
+import Grid from "@mui/material/Grid";
+import TextField from "@mui/material/TextField";
+import Typography from "@mui/material/Typography";
 import React, { useState } from "react";
 
 import baseUrl from "../global";
@@ -38,7 +38,7 @@ const LoginPage = () => {
     .catch((error)=>console.log(error))
   }
 
-  if (logged == true) {
+  if (logged === true) {
     return <DashboardPage name={name}/>
 }
   else{

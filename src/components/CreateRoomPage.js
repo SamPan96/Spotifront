@@ -38,11 +38,11 @@ const CreateRoomPage = (props) => {
       headers: { "Content-Type": "application/json" },
       body: {},
     };
-    if (isLogged == "true") {
+    if (isLogged === "true") {
       return;
     } else {
       fetch(baseUrl+"/api/check-login", requestOptions).then((response) => {
-        if (response.status == 200) {
+        if (response.status === 200) {
           setisLogged("true");
         } else {
           setisLogged("false");
@@ -57,7 +57,7 @@ const CreateRoomPage = (props) => {
   }
 
   function handleGuestCanPauseChange(e) {
-    setguestCanPause(e.target.value === "true" ? true : false);
+    setguestCanPause(e.target.value ==== "true" ? true : false);
   }
 
   function handleRoomButtonPressed() {
@@ -109,7 +109,7 @@ const CreateRoomPage = (props) => {
     return () => {};
   }, []);
 
-  if (isLogged == "false") {
+  if (isLogged === "false") {
     return <LoginPage />;
   } else {
     return (
@@ -147,12 +147,12 @@ const CreateRoomPage = (props) => {
         </Grid>
 
         <Grid item xs={12} align="center">
-          {editMode == false && (
+          {editMode === false && (
             <Typography component="h5" variant="h5">
               Create a Room
             </Typography>
           )}
-          {editMode == true && (
+          {editMode === true && (
             <Typography component="h5" variant="h5">
               Edit Room Settings
             </Typography>
@@ -212,7 +212,7 @@ const CreateRoomPage = (props) => {
         <Grid item xs={12}>
           <Grid container direction="row" spacing={1}>
             <Grid item xs={12} align="center">
-              {editMode == false && (
+              {editMode === false && (
                 <Button
                   color="primary"
                   variant="contained"
@@ -221,7 +221,7 @@ const CreateRoomPage = (props) => {
                   Create a Room
                 </Button>
               )}
-              {editMode == true && (
+              {editMode === true && (
                 <Button
                   color="primary"
                   variant="contained"
@@ -231,7 +231,7 @@ const CreateRoomPage = (props) => {
                 </Button>
               )}
             </Grid>
-            {editMode == false && (
+            {editMode === false && (
               <Grid item xs={12} align="center">
                 <Button
                   color="secondary"

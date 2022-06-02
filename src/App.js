@@ -26,7 +26,7 @@ const App = () => {
     };
     fetch(baseUrl+"/api/check-login", requestOptions)
       .then((response) => {
-        if (response.status == 200) {
+        if (response.status === 200) {
           console.log('200')
           setisLogged("true")
           response.json().then((data)=>setName(data.name))
@@ -45,7 +45,7 @@ const App = () => {
 
   console.log('started render')
   console.log(isLogged)
-  if(isLogged == "true"){
+  if(isLogged === "true"){
     return (
       <Router>
         <Routes>

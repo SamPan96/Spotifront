@@ -56,7 +56,7 @@ const SearchBar = (props) => {
   }
 
   function handleQuery(e) {
-    if (e.target.value == "") {
+    if (e.target.value === "") {
       setretrieved([]);
       setloaded(5);
       return;

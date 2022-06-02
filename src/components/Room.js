@@ -50,7 +50,7 @@ export default function Room(props) {
       body: {},
     };
     fetch(baseUrl+"/api/check-login", requestOptions).then((response) => {
-      if (response.status == 200) {
+      if (response.status === 200) {
         setLoginInfo({
           isLogged: true,
         });
@@ -72,7 +72,7 @@ export default function Room(props) {
       })
       .then((data) => {
         setspotifyAuthenticated(data.status);
-        if (data.status == false) {
+        if (data.status === false) {
           fetch(baseUrl+"/spotify/get-auth-url")
             .then((response) => {
               return response.json();
@@ -97,7 +97,7 @@ export default function Room(props) {
         return response.json();
       })
       .then((data) => {
-        if (data == undefined) {
+        if (data === undefined) {
           setRoomData({
             roomExists: false,
           });
@@ -171,7 +171,7 @@ export default function Room(props) {
   const classes = useStyles;
 
   if (loginInfo.isLogged) {
-    if (roomData.roomExists == true) {
+    if (roomData.roomExists === true) {
       return (
         <Grid container spacing={3} align="center">
           <Grid item xs={12} align="center">
@@ -188,7 +188,7 @@ export default function Room(props) {
                 <Typography variant="h5" component="h2">
                   Host: {roomData.hostName}
                 </Typography>
-                {roomData.guests.length == 0 && (
+                {roomData.guests.length === 0 && (
                   <Typography variant="h6" component="h2">
                     No Guests
                   </Typography>
@@ -198,7 +198,7 @@ export default function Room(props) {
                     variant="h6"
                     component="h2"
                     className={
-                      roomData.guests.length == 0 ? classes.hide : classes.show
+                      roomData.guests.length === 0 ? classes.hide : classes.show
                     }
                   >
                     Guests: {roomData.guests.toString()}
@@ -220,7 +220,7 @@ export default function Room(props) {
 
                 <MusicPlayer {...{'song':song,'room_code':roomCode,'votes_to_skip':roomData.votesToSkip,'uid':uid}}></MusicPlayer>
 
-                {displaySettings == true && (
+                {displaySettings === true && (
                   <Grid container spacing={1}>
                     <Grid item xs={12} align="center">
                       <CreateRoomPage
@@ -247,7 +247,7 @@ export default function Room(props) {
               </CardContent>
 
               <CardActions style={{ justifyContent: "center" }}>
-                {roomData.isHost == false && (
+                {roomData.isHost === false && (
                   <Button
                     align="center"
                     color="primary"
@@ -258,7 +258,7 @@ export default function Room(props) {
                     Back
                   </Button>
                 )}
-                {roomData.isHost == true && (
+                {roomData.isHost === true && (
                   <Grid
                     container
                     spacing={3}

@@ -65,7 +65,7 @@ const MusicPlayer = (props) => {
     </IconButton>
      
 
-{/* { hasSkipped == true &&   <IconButton>
+{/* { hasSkipped === true &&   <IconButton>
       {props.song.votes} / {props.song.votes_required}
       <CheckIcon onClick={handleDontSkip} />
     </IconButton>
