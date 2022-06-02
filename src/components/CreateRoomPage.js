@@ -63,6 +63,8 @@ const CreateRoomPage = (props) => {
   function handleRoomButtonPressed() {
     const requestOptions = {
       method: "POST",
+      credentials:"include",
+      crossDomain: "true",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         votes_to_skip: votesToSkip,
@@ -82,6 +84,8 @@ const CreateRoomPage = (props) => {
   function handleEditRoomButtonPressed() {
     const requestOptions = {
       method: "PATCH",
+      credentials:"include",
+      crossDomain: "true",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         votes_to_skip: votesToSkip,
