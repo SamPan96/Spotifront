@@ -1,9 +1,9 @@
 import axios from "axios";
+import Cookies from 'js-cookie'
 import Randomstring from "randomstring";
 import React, { Component, useEffect, useState } from "react";
 import { ReactSession } from 'react-client-session';
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
-import Cookies from 'js-cookie'
 
 import CreateRoomPage from "./components/CreateRoomPage";
 import DashboardPage from "./components/DashboardPage";
@@ -20,7 +20,6 @@ const App = () => {
     let requestOptions = {
       method: "POST",
       credentials:"include",
-      crossDomain: "true",
       headers: { "Content-Type": "application/json"},
       body: {},
     };
@@ -32,6 +31,7 @@ const App = () => {
           response.json().then((data)=>setName(data.name))
         } else {
           Cookies.set('sessionid', response.headers['sessionid'])
+          console.log(response.headers['sessionid'])
           console.log(response.status)
           setisLogged("false")
           console.log('logged returned false')

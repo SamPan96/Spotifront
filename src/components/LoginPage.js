@@ -22,8 +22,7 @@ const LoginPage = () => {
   function handleLoginButtonPressed(){
     const requestOptions = {
       method: "POST",
-      credentials:"same-origin",
-      crossDomain: "true",
+      credentials:"include",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         name: name
