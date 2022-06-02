@@ -46,6 +46,8 @@ export default function Room(props) {
   function checkLogin() {
     let requestOptions = {
       method: "POST",
+      credentials: 'include',
+      crossorigin: 'true',
       headers: { "Content-Type": "application/json" },
       body: {},
     };
