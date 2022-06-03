@@ -68,14 +68,22 @@ export default function Room(props) {
   }
 
   function authenticateSpotify() {
-    fetch(baseUrl+"/spotify/is-authenticated")
+    let requestOptions = {
+      method: "GET",
+      credentials:"include",
+      crossDomain: "true",  
+      headers: { "Content-Type": "application/json" },
+      
+    };
+
+    fetch(baseUrl+"/spotify/is-authenticated",requestOptions)
       .then((response) => {
         return response.json();
       })
       .then((data) => {
         setspotifyAuthenticated(data.status);
         console.log(data.status)
-        if (data.status == false) {
+        if (data.status === false) {
           fetch(baseUrl+"/spotify/get-auth-url")
             .then((response) => {
               return response.json();
