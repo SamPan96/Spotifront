@@ -6,7 +6,7 @@ import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import Cookies from 'js-cookie'
 import React, { useState } from "react";
-
+import Footer from "./Footer";
 import baseUrl from "../global";
 import App from "./../App"
 import DashboardPage from "./DashboardPage";
@@ -93,7 +93,11 @@ const LoginPage = () => {
           >
             Let's listen to some music!
           </Button>
-        </Grid>
+        </Grid>        
+        <Grid item xs={12} align="center">
+            <Footer></Footer>
+            </Grid>
+        
       </Grid>
     );
   }
