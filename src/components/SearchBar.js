@@ -1,6 +1,6 @@
-import { Box, Button, Card, CardContent, Divider, Grid, IconButton, List, ListItem, TextField, Typography } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import CheckIcon from "@mui/icons-material/Check";
+import { Box, Button, Card, CardContent, Divider, Grid, IconButton, List, ListItem, TextField, Typography } from "@mui/material";
 import React, { Component } from "react";
 import { useState } from "react";
 
@@ -13,8 +13,8 @@ const SearchBar = (props) => {
   let cardStyle = {
     display: "block",
     transitionDuration: "0.3s",
-    height: 200,
-    width: 500,
+    // height: 200,
+    // width: 500,
   };
 
   function HandleLoadMore() {
@@ -30,7 +30,7 @@ const SearchBar = (props) => {
   function handleAdd(uri) {
     const requestOptions = {
       method: "POST",
-      credentials:"same-origin",
+      credentials: "same-origin",
       crossDomain: "true",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -38,7 +38,7 @@ const SearchBar = (props) => {
         uri: uri,
       }),
     };
-    fetch(baseUrl+"/spotify/add", requestOptions).then((response) => {
+    fetch(baseUrl + "/spotify/add", requestOptions).then((response) => {
       if (response.ok) {
         setadded(added.concat([uri]));
       }
@@ -69,7 +69,7 @@ const SearchBar = (props) => {
         query: e.target.value,
       }),
     };
-    fetch(baseUrl+"/spotify/search", requestOptions)
+    fetch(baseUrl + "/spotify/search", requestOptions)
       .then((response) => {
         if (response.ok) {
           return response.json();
@@ -82,71 +82,69 @@ const SearchBar = (props) => {
 
   return (
     <div>
-      {/* <input
-        type="text"
-        placeholder="Search Song/Artist"
-        //   value={wordEntered}
-        onChange={handleQuery}
-      ></input> */}
-      <TextField
-        onChange={handleQuery}
-        id="filled-search"
-        label="Search For Songs/Artists"
-        type="search"
-        variant="filled"
-      />
+      <Box m={3} pt={0}>
+        <TextField
+          onChange={handleQuery}
+          id="filled-search"
+          label="Search For Songs/Artists"
+          type="search"
+          variant="filled"
+        />
 
-      {retrieved.length != 0 &&
-        retrieved.slice(0, loaded).map((value, key) => {
-          return (
-            <Card variant="outlined" style={cardStyle}>
-              <CardContent>
-                <Grid
-                  container
-                  direction="row"
-                  justifyContent="space-between"
-                  alignItems="center"
-                >
-                  <Grid item align="center" xs={4}>
-                    <img src={value["picture"]} height="50%" width="100%" />
-                  </Grid>
-                  <Grid item align="center" xs={6}>
-                    <Typography component="h6" variant="h6">
-                      {value["name"]}
-                    </Typography>
-                    <Typography color="textSecondary" variant="subtitle1">
-                      {value["artist"]}
-                    </Typography>
-                  </Grid>
+        {retrieved.length != 0 &&
+          retrieved.slice(0, loaded).map((value, key) => {
+            return (
+              <Card variant="outlined" style={cardStyle}>
+                <CardContent>
+                  <Grid
+                    container
+                    direction="row"
+                    justifyContent="space-between"
+                    alignItems="center"
+                  >
+                    <Grid item align="center" xs={4}>
+                      <img src={value["picture"]} height="50%" width="100%" />
+                    </Grid>
+                    <Grid item align="center" xs={6}>
+                      <Typography component="h6" variant="h6">
+                        {value["name"]}
+                      </Typography>
+                      <Typography color="textSecondary" variant="subtitle1">
+                        {value["artist"]}
+                      </Typography>
+                    </Grid>
 
-                  <Grid item align="center" xs={2}>
-                    <IconButton
-                      onClick={() =>
-                        added.includes(value["uri"])
-                          ? handleRemove(value["uri"])
-                          : handleAdd(value["uri"])
-                      }
-                    >
-                      {!added.includes(value["uri"]) && <AddIcon></AddIcon>}
+                    <Grid item align="center" xs={2}>
+                      <IconButton
+                        onClick={() =>
+                          added.includes(value["uri"])
+                            ? handleRemove(value["uri"])
+                            : handleAdd(value["uri"])
+                        }
+                      >
+                        {!added.includes(value["uri"]) && <AddIcon></AddIcon>}
 
-                      {added.includes(value["uri"]) && <CheckIcon></CheckIcon>}
-                    </IconButton>
+                        {added.includes(value["uri"]) && (
+                          <CheckIcon></CheckIcon>
+                        )}
+                      </IconButton>
+                    </Grid>
                   </Grid>
-                </Grid>
-              </CardContent>
-            </Card>
-          );
-        })}
-      {loaded < retrieved.length && (
-        <Button
-          align="center"
-          color="secondary"
-          variant="contained"
-          onClick={HandleLoadMore}
-        >
-          Load More
-        </Button>
-      )}
+                </CardContent>
+              </Card>
+            );
+          })}
+        {loaded < retrieved.length && (
+          <Button
+            align="center"
+            color="secondary"
+            variant="contained"
+            onClick={HandleLoadMore}
+          >
+            Load More
+          </Button>
+        )}
+      </Box>
     </div>
   );
 };

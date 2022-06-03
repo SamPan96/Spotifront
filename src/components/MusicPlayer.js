@@ -2,7 +2,7 @@ import CheckIcon from "@mui/icons-material/Check";
 import PauseIcon from "@mui/icons-material/Pause";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import SkipNextIcon from "@mui/icons-material/SkipNext";
-import { Card, Grid, IconButton, LinearProgress, Typography } from "@mui/material";
+import { Box, Card, Grid, IconButton, LinearProgress, Typography } from "@mui/material";
 import React, { Component, useState } from "react";
 
 import baseUrl from "../global";
@@ -45,6 +45,7 @@ const MusicPlayer = (props) => {
   }
 
   return (
+    <Box m={3} pt={0}>
     <Card>
       <Grid container alignItems="center">
         <Grid item align="center" xs={4}>
@@ -82,6 +83,7 @@ const MusicPlayer = (props) => {
         value={(props.song.time / props.song.duration) * 100}
       />
     </Card>
+    </Box>
   );
 };
 

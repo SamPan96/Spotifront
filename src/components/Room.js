@@ -32,13 +32,13 @@ export default function Room(props) {
     isLogged: false,
   });
   const [song, setsong] = useState({});
-  const [uid, setuid] = useState("")
+  const [uid, setuid] = useState("");
 
   let { roomCode } = useParams();
   let requestOptions = {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    credentials:"include",
+    credentials: "include",
     crossDomain: "true",
     body: {},
   };
@@ -46,45 +46,50 @@ export default function Room(props) {
   function checkLogin() {
     let requestOptions = {
       method: "POST",
-      credentials:"include",
-      crossDomain: "true",  
+      credentials: "include",
+      crossDomain: "true",
       headers: { "Content-Type": "application/json" },
       body: {},
     };
-    fetch(baseUrl+"/api/check-login", requestOptions).then((response) => {
-      if (response.status === 200) {
-        setLoginInfo({
-          isLogged: true,
-        });
-        return response.json()
-      } else {
-        setLoginInfo({
-          isLogged: false,
-        });
-      }
-    }).then((data)=>
-      setuid(data.uid)
-    )
+    fetch(baseUrl + "/api/check-login", requestOptions)
+      .then((response) => {
+        if (response.status === 200) {
+          setLoginInfo({
+            isLogged: true,
+          });
+          return response.json();
+        } else {
+          setLoginInfo({
+            isLogged: false,
+          });
+        }
+      })
+      .then((data) => setuid(data.uid));
   }
 
   function authenticateSpotify() {
     let requestOptions = {
       method: "GET",
-      credentials:"include",
-      crossDomain: "true",  
+      credentials: "include",
+      crossDomain: "true",
       headers: { "Content-Type": "application/json" },
-      
     };
 
-    fetch(baseUrl+"/spotify/is-authenticated",requestOptions)
+    fetch(baseUrl + "/spotify/is-authenticated", requestOptions)
       .then((response) => {
         return response.json();
       })
       .then((data) => {
         setspotifyAuthenticated(data.status);
-        console.log(data.status)
         if (data.status === false) {
-          fetch(baseUrl+"/spotify/get-auth-url")
+          let requestOptions = {
+            method: "GET",
+            credentials: "include",
+            crossDomain: "true",  
+            headers: { "Content-Type": "application/json" },
+        
+          };      
+          fetch(baseUrl + "/spotify/get-auth-url",requestOptions)
             .then((response) => {
               return response.json();
             })
@@ -103,15 +108,14 @@ export default function Room(props) {
   }
 
   function retrieveRoom() {
-
     let requestOptions = {
       method: "GET",
-      headers: { "Content-Type": "application/json" },
-      credentials:"include",
+      credentials: "include",
       crossDomain: "true",
+      headers: { "Content-Type": "application/json" },
     };
-  
-    fetch(baseUrl+"/api/get-room" + "?code=" + roomCode,requestOptions)
+
+    fetch(baseUrl + "/api/get-room" + "?code=" + roomCode,requestOptions)
       .then((response) => {
         return response.json();
       })
@@ -142,16 +146,16 @@ export default function Room(props) {
       });
   }
 
-
   function getCurrentSong() {
-
     let requestOptions = {
       method: "GET",
+      credentials: "include",
+      crossDomain: "true",  
       headers: { "Content-Type": "application/json" },
-      credentials:"include",
-      crossDomain: "true",
+  
     };
-    fetch(baseUrl+"/spotify/current-song?room_code="+roomCode,requestOptions )
+
+    fetch(baseUrl + "/spotify/current-song?room_code=" + roomCode,requestOptions)
       .then((response) => {
         if (!response.ok) {
         } else {
@@ -166,11 +170,9 @@ export default function Room(props) {
   useEffect(() => {
     checkLogin();
     retrieveRoom();
-    setInterval(getCurrentSong,3000)
+    setInterval(getCurrentSong, 1000);
     return () => {};
   }, []);
-
-  
 
   const useStyles = makeStyles({
     root: {
@@ -231,20 +233,16 @@ export default function Room(props) {
                   </Typography>
                 )}
 
-                {/* <Typography className={classes.pos} color="textSecondary">
-                  Votes to Skip: {roomData.votesToSkip}
-                </Typography>
-                <Typography className={classes.pos} color="textSecondary">
-                  Guests can pause/play: {roomData.guestCanPause.toString()}
-                </Typography>
-                <Typography className={classes.pos} color="textSecondary">
-                  Created at: {roomData.createdAt.split("T")[0].split("-")[2]}/
-                  {roomData.createdAt.split("T")[0].split("-")[1]}/
-                  {roomData.createdAt.split("T")[0].split("-")[0]}
-                </Typography> */}
-                <SearchBar {...{'room_code':roomCode}}></SearchBar>
+                <SearchBar {...{ room_code: roomCode }}></SearchBar>
 
-                <MusicPlayer {...{'song':song,'room_code':roomCode,'votes_to_skip':roomData.votesToSkip,'uid':uid}}></MusicPlayer>
+                <MusicPlayer
+                  {...{
+                    song: song,
+                    room_code: roomCode,
+                    votes_to_skip: roomData.votesToSkip,
+                    uid: uid,
+                  }}
+                ></MusicPlayer>
 
                 {displaySettings === true && (
                   <Grid container spacing={1}>
@@ -272,6 +270,8 @@ export default function Room(props) {
                 )}
               </CardContent>
 
+              {displaySettings === false &&(
+
               <CardActions style={{ justifyContent: "center" }}>
                 {roomData.isHost === false && (
                   <Button
@@ -287,13 +287,14 @@ export default function Room(props) {
                 {roomData.isHost === true && (
                   <Grid
                     container
-                    spacing={3}
-                    align="center"
+                    columns={2}
+                    spacing={4}
+                    // align="center"
                     direction="row"
                     justifyContent="center"
-                    alignItems="center"
+                    // alignItems="center"
                   >
-                    <Grid item xs={2} align="center">
+                    <Grid item xs={1} align="center">
                       <Button
                         align="center"
                         color="primary"
@@ -304,7 +305,7 @@ export default function Room(props) {
                         Back
                       </Button>
                     </Grid>
-                    <Grid item xs={2} align="center">
+                    <Grid item xs={1} align="center">
                       <Button
                         align="center"
                         color="secondary"
@@ -317,6 +318,7 @@ export default function Room(props) {
                   </Grid>
                 )}
               </CardActions>
+              )}
             </Card>
           </Grid>
         </Grid>
