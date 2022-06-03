@@ -19,12 +19,12 @@ const SearchBar = (props) => {
 
   function HandleLoadMore() {
     if (loaded + 5 < retrieved.length - 1) {
-      console.log("here"); // can i add
+      
       setloaded(loaded + 5);
     } else {
       setloaded(retrieved.length);
     }
-    console.log("RETRIEVED:" + retrieved.length + " LOADED: " + loaded);
+    
   }
 
   function handleAdd(uri) {

@@ -12,7 +12,7 @@ const HomePage = () => {
   const[name,setName] = useState("");
   const[isLogged, setisLogged] = useState("false")
   function checkLogin() {
-    console.log('checkLogin called')
+    
     let requestOptions = {
       credentials:"include",
       crossDomain: "true",
@@ -22,11 +22,11 @@ const HomePage = () => {
     fetch(baseUrl+"/api/check-login", requestOptions)
       .then((response) => {
         if (response.status === 200) {
-          console.log('200')
+          
           setisLogged("true")
           response.json().then((data)=>setName(data.name))
         } else {
-          console.log(response.status)
+          
           setisLogged("false")
         }
       });
@@ -37,8 +37,8 @@ const HomePage = () => {
     }
   }, [])
 
-  console.log('started render')
-  console.log(isLogged)
+  
+  
   if(isLogged === "true"){
     return (
       <Router>

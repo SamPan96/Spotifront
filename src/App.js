@@ -27,15 +27,15 @@ const App = () => {
     fetch(baseUrl+"/api/check-login", requestOptions)
       .then((response) => {
         if (response.status === 200) {
-          console.log('200')
+          
           setisLogged("true")
           response.json().then((data)=>setName(data.name))
         } else {
           // Cookies.set('sessionid', response.headers['sessionid'])
-          console.log(response.headers['sessionid'])
-          console.log(response.status)
+          
+          
           setisLogged("false")
-          console.log('logged returned false')
+          
         }
       })
   }
@@ -45,8 +45,8 @@ const App = () => {
     }
   }, [])
 
-  console.log('started render')
-  console.log(isLogged)
+  
+  
   if(isLogged === "true"){
     return (
       <Router>

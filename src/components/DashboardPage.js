@@ -23,9 +23,9 @@ const DashboardPage = () => {
         return response.json();
       })
       .then((data) => {
-        console.log(data)
+        
         if (data.status === false) {
-          console.log('in here')
+          
           fetch(baseUrl+"/spotify/get-auth-url")
             .then((response) => {
               return response.json();
@@ -100,7 +100,7 @@ const DashboardPage = () => {
   });
 
   const classes = useStyles;
-  console.log(rooms);
+  
 
   if (name === "") {
     return <CircularProgress color="primary" />;

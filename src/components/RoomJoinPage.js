@@ -38,7 +38,7 @@ const RoomJoinPage = () => {
           setIsLogged("false");
         }
       })
-      .catch((error)=>console.log(error));
+      .catch((error)=>
     }
   }
 
@@ -62,13 +62,13 @@ const RoomJoinPage = () => {
         return response.json();
       })
       .then((data) => {
-        console.log("inside second then");
+        
         navigate("/room/"+roomCode)
         
       })
       .catch((e) => {
-        console.log("inside catch");
-        console.log(e);
+        
+        
         setError(e.message);
       });
   }
@@ -85,10 +85,10 @@ const RoomJoinPage = () => {
     };
   }, []);
 
-  console.log("started rendering Join Page");
-  console.log("login checked");
+  
+  
   if (isLogged === "true") {
-      console.log("no room retrieved");
+      
       return (
         <div>
           <Grid container spacing={1}>
@@ -132,7 +132,7 @@ const RoomJoinPage = () => {
       );
   } 
   else {
-    console.log("isLogged = "+isLogged)
+    
     return <LoginPage />;
   }
 };

@@ -53,7 +53,7 @@ const CreateRoomPage = (props) => {
 
   function handleVotesChange(e) {
     setvotesToSkip(e.target.value);
-    console.log(votesToSkip);
+    
   }
 
   function handleGuestCanPauseChange(e) {
@@ -73,7 +73,7 @@ const CreateRoomPage = (props) => {
     };
     fetch(baseUrl+"/api/create-room", requestOptions)
       .then((response) => {
-        console.log(response);
+        
         return response.json();
       })
       .then((data) => {
@@ -103,7 +103,7 @@ const CreateRoomPage = (props) => {
         props.updateCallback();
       })
       .catch((e) => {
-        console.log(e);
+        
         seterror(e.message);
       });
   }

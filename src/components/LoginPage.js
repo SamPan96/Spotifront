@@ -38,7 +38,7 @@ const LoginPage = () => {
       setname(data.name);
       setlogged(true);
     })
-    .catch((error)=>console.log(error))
+    .catch((error)=>
   }
 
   if (logged === true) {
