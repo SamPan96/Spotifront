@@ -38,7 +38,6 @@ const RoomJoinPage = () => {
           setIsLogged("false");
         }
       })
-      .catch((error)=>
     }
   }
 

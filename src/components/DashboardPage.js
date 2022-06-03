@@ -194,11 +194,11 @@ const DashboardPage = () => {
           <Grid
             container
             direction="row"
-            spacing={1}
-            justifyContent="center"
+            spacing={3}
+            justifyContent="space-between"
             alignItems="center"
           >
-            <Grid item xs={2} align="center">
+            <Grid item xs={6} align="end">
               <Button
                 color="primary"
                 variant="contained"
@@ -209,7 +209,7 @@ const DashboardPage = () => {
               </Button>
             </Grid>
 
-            <Grid item xs={2} align="center">
+            <Grid item xs={6} align="begin">
               <Button
                 color="secondary"
                 variant="contained"
