@@ -9,7 +9,7 @@ import { Link, useNavigate } from "react-router-dom";
 import baseUrl from "../global";
 import LoginPage from "./LoginPage";
 import Room from './Room';
-
+import Footer from "./Footer";
 const RoomJoinPage = () => {
   const [isLogged, setIsLogged] = useState("false");
   const [roomCode, setRoomCode] = useState("");
@@ -73,7 +73,7 @@ const RoomJoinPage = () => {
   }
 
   function handleTextFieldChange(e) {
-    setRoomCode(e.target.value);
+    setRoomCode(e.target.value.toUppercase());
     setError("")
   }
 
@@ -90,7 +90,7 @@ const RoomJoinPage = () => {
       
       return (
         <div>
-          <Grid container spacing={1}>
+          <Grid container spacing={3}>
             <Grid item xs={12} align="center">
               <Typography variant="h4" component="h4">
                 Join a Room
@@ -108,6 +108,15 @@ const RoomJoinPage = () => {
               />
             </Grid>
             <Grid item xs={12} align="center">
+            <Grid
+            container
+            direction="row"
+            spacing={3}
+            justifyContent="space-between"
+            alignItems="center"
+          >
+
+            <Grid item xs={6.2} align="end">
               <Button
                 variant="contained"
                 color="primary"
@@ -116,7 +125,7 @@ const RoomJoinPage = () => {
                 Enter Room
               </Button>
             </Grid>
-            <Grid item xs={12} align="center">
+            <Grid item xs={5.8} align="start">
               <Button
                 variant="contained"
                 color="secondary"
@@ -126,6 +135,11 @@ const RoomJoinPage = () => {
                 Back
               </Button>
             </Grid>
+            </Grid>
+            </Grid>
+            <Grid item xs={12} align="center">
+              <Footer></Footer>
+              </Grid>
           </Grid>
         </div>
       );
