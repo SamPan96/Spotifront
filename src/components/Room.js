@@ -1,7 +1,7 @@
 import { mergeClasses } from "@material-ui/styles";
 import { makeStyles } from "@material-ui/styles";
 import { Grid, responsiveFontSizes } from "@mui/material";
-import { Card } from "@mui/material";
+import { Box, Card } from "@mui/material";
 import { CardActions } from "@mui/material";
 import { CardContent } from "@mui/material";
 import Button from "@mui/material/Button";
@@ -12,6 +12,7 @@ import { Link } from "react-router-dom";
 
 import baseUrl from "../global";
 import CreateRoomPage from "./CreateRoomPage";
+import Footer from "./Footer";
 import LoginPage from "./LoginPage";
 import MusicPlayer from "./MusicPlayer";
 import SearchBar from "./SearchBar";
@@ -85,11 +86,10 @@ export default function Room(props) {
           let requestOptions = {
             method: "GET",
             credentials: "include",
-            crossDomain: "true",  
+            crossDomain: "true",
             headers: { "Content-Type": "application/json" },
-        
-          };      
-          fetch(baseUrl + "/spotify/get-auth-url",requestOptions)
+          };
+          fetch(baseUrl + "/spotify/get-auth-url", requestOptions)
             .then((response) => {
               return response.json();
             })
@@ -115,7 +115,7 @@ export default function Room(props) {
       headers: { "Content-Type": "application/json" },
     };
 
-    fetch(baseUrl + "/api/get-room" + "?code=" + roomCode,requestOptions)
+    fetch(baseUrl + "/api/get-room" + "?code=" + roomCode, requestOptions)
       .then((response) => {
         return response.json();
       })
@@ -150,12 +150,14 @@ export default function Room(props) {
     let requestOptions = {
       method: "GET",
       credentials: "include",
-      crossDomain: "true",  
+      crossDomain: "true",
       headers: { "Content-Type": "application/json" },
-  
     };
 
-    fetch(baseUrl + "/spotify/current-song?room_code=" + roomCode,requestOptions)
+    fetch(
+      baseUrl + "/spotify/current-song?room_code=" + roomCode,
+      requestOptions
+    )
       .then((response) => {
         if (!response.ok) {
         } else {
@@ -235,6 +237,8 @@ export default function Room(props) {
 
                 <SearchBar {...{ room_code: roomCode }}></SearchBar>
 
+
+
                 <MusicPlayer
                   {...{
                     song: song,
@@ -270,44 +274,39 @@ export default function Room(props) {
                 )}
               </CardContent>
 
-              {displaySettings === false &&(
+              {displaySettings === false && roomData.isHost === false && (
+                <Button
+                  align="center"
+                  color="primary"
+                  variant="contained"
+                  to={"/"}
+                  component={Link}
+                >
+                  Back
+                </Button>
+              )}
 
-              <CardActions style={{ justifyContent: "center" }}>
-                {roomData.isHost === false && (
-                  <Button
-                    align="center"
-                    color="primary"
-                    variant="contained"
-                    to={"/"}
-                    component={Link}
-                  >
-                    Back
-                  </Button>
-                )}
-                {roomData.isHost === true && (
+              {displaySettings === false && roomData.isHost === true && (
+                <Box m={3} pt={0}>
                   <Grid
                     container
-                    columns={2}
-                    spacing={4}
-                    // align="center"
                     direction="row"
-                    justifyContent="center"
-                    // alignItems="center"
+                    spacing={3}
+                    justifyContent="space-between"
+                    alignItems="center"
                   >
-                    <Grid item xs={1} align="center">
+                    <Grid item xs={6} align="end">
                       <Button
-                        align="center"
                         color="primary"
                         variant="contained"
-                        to={"/"}
+                        to="/"
                         component={Link}
                       >
                         Back
                       </Button>
                     </Grid>
-                    <Grid item xs={1} align="center">
+                    <Grid item xs={6} align="start">
                       <Button
-                        align="center"
                         color="secondary"
                         variant="contained"
                         onClick={HandleSettingsClicked}
@@ -316,12 +315,13 @@ export default function Room(props) {
                       </Button>
                     </Grid>
                   </Grid>
-                )}
-              </CardActions>
+                </Box>
               )}
             </Card>
           </Grid>
+          <Footer></Footer>
         </Grid>
+
       );
     } else {
       return <h3>Room {roomCode} does not exist!</h3>;

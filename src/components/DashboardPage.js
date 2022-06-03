@@ -209,7 +209,7 @@ const DashboardPage = () => {
               </Button>
             </Grid>
 
-            <Grid item xs={6} align="begin">
+            <Grid item xs={6} align="start">
               <Button
                 color="secondary"
                 variant="contained"
