@@ -1,11 +1,10 @@
-import { mergeClasses } from "@material-ui/styles";
-import { makeStyles } from "@material-ui/styles";
 import { Grid, responsiveFontSizes } from "@mui/material";
 import { Box, Card } from "@mui/material";
 import { CardActions } from "@mui/material";
 import { CardContent } from "@mui/material";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
+import { makeStyles } from '@mui/styles';
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";

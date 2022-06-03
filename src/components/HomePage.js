@@ -1,3 +1,4 @@
+import { createTheme, MuiThemeProvider } from '@mui/material/core/styles';
 import React, { Component, useEffect, useState } from "react";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 
@@ -9,6 +10,17 @@ import Room from "./Room";
 import RoomJoinPage from "./RoomJoinPage";
 
 const HomePage = () => {
+  const theme = createTheme({
+    palette: {
+      secondary: {
+        main: '#3e4fe3'
+      },
+      primary:{
+        main:'#cae33e'
+      }
+    }
+  });
+
   const[name,setName] = useState("");
   const[isLogged, setisLogged] = useState("false")
   function checkLogin() {
@@ -41,19 +53,7 @@ const HomePage = () => {
   
   if(isLogged === "true"){
     return (
-      <Router>
-        <Routes>
-          <Route exact path="/" element={<DashboardPage name={name} />} />
-          <Route path="/join" element={<RoomJoinPage />} />
-          <Route path="/create" element={<CreateRoomPage />} />
-          <Route exact path="/room/:roomCode" element={<Room />} /> 
-        </Routes>
-      </Router>
-    )
-  }
-
-  else{
-    return (
+      <MuiThemeProvider theme={theme}>
       <Router>
         <Routes>
           <Route exact path="/" element={<LoginPage />} />
@@ -62,8 +62,22 @@ const HomePage = () => {
           <Route exact path='/room/:roomCode' element={<Room/> } />
         </Routes>
       </Router>
-    );
+      </MuiThemeProvider> )
+  }
 
+  else{
+    return (
+      <MuiThemeProvider theme={theme}>
+      <Router>
+        <Routes>
+          <Route exact path="/" element={<LoginPage />} />
+          <Route path="/join" element={<RoomJoinPage />} />
+          <Route path="/create" element={<CreateRoomPage />} />
+          <Route exact path='/room/:roomCode' element={<Room/> } />
+        </Routes>
+      </Router>
+      </MuiThemeProvider> )
+;
   }
 }
  

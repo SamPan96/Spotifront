@@ -1,4 +1,4 @@
-import { makeStyles } from "@material-ui/styles";
+import { makeStyles } from "@mui/styles";
 import { CircularProgress } from "@mui/material";
 import { Card } from "@mui/material";
 import { CardActions } from "@mui/material";
@@ -10,8 +10,10 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 import baseUrl from "../global";
+import Footer from "./Footer";
 
 const DashboardPage = () => {
+  
   const [name, setname] = useState("");
   const [rooms, setrooms] = useState([]);
   const [uid, setuid] = useState("");
@@ -221,6 +223,11 @@ const DashboardPage = () => {
             </Grid>
           </Grid>
         </Grid>
+        <Grid item xs={12} align="center">
+        <Footer></Footer>
+        </Grid>
+
+        
       </Grid>
     );
   }

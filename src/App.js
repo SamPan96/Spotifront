@@ -1,3 +1,5 @@
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+// import { createTheme, ThemeProvider } from '@mui/material/styles';
 import axios from "axios";
 import Cookies from 'js-cookie'
 import Randomstring from "randomstring";
@@ -13,7 +15,17 @@ import RoomJoinPage from "./components/RoomJoinPage";
 import baseUrl from "./global";
 
 const App = () => {
-
+  const theme = createTheme({
+    palette: {
+      primary: {
+        main: "#9c0024"
+      },
+      secondary: {
+        main: "#009872"
+      }
+    }
+  
+  });
   const[name,setName] = useState("");
   const[isLogged, setisLogged] = useState("false")
   function checkLogin() {
@@ -46,9 +58,9 @@ const App = () => {
   }, [])
 
   
-  
   if(isLogged === "true"){
     return (
+      <ThemeProvider theme={theme}>
       <Router>
         <Routes>
           <Route exact path="/" element={<DashboardPage name={name} />} />
@@ -57,11 +69,13 @@ const App = () => {
           <Route exact path="/room/:roomCode" element={<Room />} /> 
         </Routes>
       </Router>
+        </ThemeProvider>
     )
   }
 
   else{
     return (
+      <ThemeProvider theme={theme}>
       <Router>
         <Routes>
           <Route exact path="/" element={<LoginPage />} />
@@ -70,6 +84,8 @@ const App = () => {
           <Route exact path='/room/:roomCode' element={<Room/> } />
         </Routes>
       </Router>
+      </ThemeProvider>
+      
     );
 
   }

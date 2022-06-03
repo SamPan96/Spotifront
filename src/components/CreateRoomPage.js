@@ -1,19 +1,20 @@
-import { Collapse } from "@material-ui/core";
-import Button from "@material-ui/core/Button";
-import FormControl from "@material-ui/core/FormControl";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import FormHelperText from "@material-ui/core/FormHelperText";
-import Grid from "@material-ui/core/Grid";
-import Radio from "@material-ui/core/Radio";
-import RadioGroup from "@material-ui/core/RadioGroup";
-import TextField from "@material-ui/core/TextField";
-import Typography from "@material-ui/core/Typography";
-import Alert from "@material-ui/lab/Alert";
+import { Collapse } from "@mui/material";
+import Alert from "@mui/material/Alert";
+import Button from "@mui/material/Button";
+import FormControl from "@mui/material/FormControl";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import FormHelperText from "@mui/material/FormHelperText";
+import Grid from "@mui/material/Grid";
+import Radio from "@mui/material/Radio";
+import RadioGroup from "@mui/material/RadioGroup";
+import TextField from "@mui/material/TextField";
+import Typography from "@mui/material/Typography";
 import React from "react";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import baseUrl from "../global";
+import Footer from "./Footer";
 import LoginPage from "./LoginPage";
 
 const CreateRoomPage = (props) => {
@@ -249,7 +250,11 @@ const CreateRoomPage = (props) => {
             )}
           </Grid>
         </Grid>
+        <Grid item xs={12} align="center">
+        <Footer></Footer>
+        </Grid>
       </Grid>
+
     );
   }
 };
