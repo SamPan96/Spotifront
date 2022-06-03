@@ -74,7 +74,8 @@ export default function Room(props) {
       })
       .then((data) => {
         setspotifyAuthenticated(data.status);
-        if (data.status === false) {
+        console.log(data.status)
+        if (data.status == false) {
           fetch(baseUrl+"/spotify/get-auth-url")
             .then((response) => {
               return response.json();
