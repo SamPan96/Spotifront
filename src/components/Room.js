@@ -157,7 +157,7 @@ export default function Room(props) {
   useEffect(() => {
     checkLogin();
     retrieveRoom();
-    setInterval(getCurrentSong,1000)
+    setInterval(getCurrentSong,3000)
     return () => {};
   }, []);
 
