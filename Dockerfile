@@ -8,7 +8,7 @@ RUN npm install --legacy-peer-deps
 COPY . .
 EXPOSE 3000
 RUN export NODE_OPTIONS=--max-old-space-size=8192
-CMD ["npm","start"]
+CMD ["node","./scr/App.js"]
 
 
 # RUN npm install react-scripts@3.4.1 -g --silent
