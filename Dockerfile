@@ -7,7 +7,7 @@ RUN apk add npm
 RUN npm install --legacy-peer-deps
 COPY . .
 EXPOSE 3000
-RUN export NODE_OPTIONS=--max-old-space-size=8192
+#RUN export NODE_OPTIONS=--max-old-space-size=8192
 CMD ["node","./src/App.js"]
 
 
