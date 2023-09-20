@@ -1,23 +1,22 @@
 # build environment
-FROM node:17-alpine
-WORKDIR /app
-ENV PATH /app/node_modules/.bin:$PATH
-COPY package.json ./
-RUN apk add npm
-RUN npm install --legacy-peer-deps
-COPY . .
-EXPOSE 3000
-#RUN export NODE_OPTIONS=--max-old-space-size=8192
-RUN npm run start
+# FROM node:17-alpine
+# WORKDIR /app
+# ENV PATH /app/node_modules/.bin:$PATH
+# COPY package.json ./
+# RUN apk add npm
+# RUN npm install --legacy-peer-deps
+# COPY . .
+# EXPOSE 3000
+# #RUN export NODE_OPTIONS=--max-old-space-size=8192
+# RUN npm run start
 
-# RUN npm install react-scripts@3.4.1 -g --silent
-# COPY . ./
-# RUN npm run build
-
-# # production environment
-# FROM nginx:stable-alpine
-# COPY --from=build /app/build /usr/share/nginx/html
-# # new
-# COPY nginx/nginx.conf /etc/nginx/conf.d/default.conf
-# EXPOSE 80
-# CMD ["nginx", "-g", "daemon off;"]
+# production environment
+FROM nginx:stable-alpine
+RUN npm install react-scripts@3.4.1 -g --silent
+COPY . ./
+RUN npm run build
+COPY --from=build /app/build /usr/share/nginx/html
+# new
+COPY nginx/nginx.conf /etc/nginx/conf.d/default.conf
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
