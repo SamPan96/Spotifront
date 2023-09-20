@@ -1,5 +1,5 @@
 # build environment
-FROM node:20-alpine
+FROM node:17-alpine
 WORKDIR /app
 ENV PATH /app/node_modules/.bin:$PATH
 COPY package.json ./
@@ -8,8 +8,7 @@ RUN npm install --legacy-peer-deps
 COPY . .
 EXPOSE 3000
 #RUN export NODE_OPTIONS=--max-old-space-size=8192
-CMD ["node","./src/App.js"]
-
+RUN npm run start
 
 # RUN npm install react-scripts@3.4.1 -g --silent
 # COPY . ./

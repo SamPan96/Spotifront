@@ -224,7 +224,6 @@ const DashboardPage = () => {
           </Grid>
         </Grid>
         <Grid item xs={12} align="center">
-        <Footer></Footer>
         </Grid>
 
         
