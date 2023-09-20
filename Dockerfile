@@ -25,7 +25,7 @@ WORKDIR /app
 COPY package.json package-lock.json ./
 COPY public/ public/
 COPY src/ src/
-RUN npm ci
+RUN npm i
 RUN npm run build
 
 FROM nginx:stable-alpine
