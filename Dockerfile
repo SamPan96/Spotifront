@@ -23,9 +23,10 @@
 FROM node:17-alpine as BUILDER
 WORKDIR /app
 COPY package.json package-lock.json ./
+RUN apk add npm
 COPY public/ public/
 COPY src/ src/
-RUN npm i
+RUN npm ci
 RUN npm run build
 
 FROM nginx:stable-alpine
