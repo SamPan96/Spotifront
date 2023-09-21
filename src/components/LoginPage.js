@@ -19,7 +19,7 @@ const LoginPage = () => {
     setname(e.target.value)
   }
 
-  function handleLoginButtonPressed(){
+  async function handleLoginButtonPressed(){
     const requestOptions = {
       method: "POST",
       credentials:"include",
@@ -29,10 +29,9 @@ const LoginPage = () => {
         name: name
       }),
     };
-    fetch(baseUrl+"/api/create-person", requestOptions)
+    await fetch(baseUrl+"/api/create-person", requestOptions)
     .then(
       (response)=>{
-      // Cookies.set('sessionid', response.headers['sessionid'])
       return response.json()}
     ).then((data) =>{
       setname(data.name);
