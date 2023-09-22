@@ -37,7 +37,7 @@ export default function Room(props) {
   let { roomCode } = useParams();
   let requestOptions = {
     method: "POST",
-    headers: { "Content-Type": "application/json","uid":document.getElementById("uid")?document.getElementById("uid"):"" },
+    headers: { "Content-Type": "application/json"},
     credentials: "include",
     crossDomain: "true",
     body: {},
@@ -48,7 +48,7 @@ export default function Room(props) {
       method: "POST",
       credentials: "include",
       crossDomain: "true",
-      headers: { "Content-Type": "application/json","uid":document.getElementById("uid")?document.getElementById("uid"):"" },
+      headers: { "Content-Type": "application/json"},
       body: {},
     };
     fetch(baseUrl + "/api/check-login", requestOptions)
@@ -72,7 +72,7 @@ export default function Room(props) {
       method: "GET",
       credentials: "include",
       crossDomain: "true",
-      headers: { "Content-Type": "application/json","uid":document.getElementById("uid")?document.getElementById("uid"):"" },
+      headers: { "Content-Type": "application/json"},
     };
 
     fetch(baseUrl + "/spotify/is-authenticated", requestOptions)
@@ -86,7 +86,7 @@ export default function Room(props) {
             method: "GET",
             credentials: "include",
             crossDomain: "true",
-            headers: { "Content-Type": "application/json","uid":document.getElementById("uid")?document.getElementById("uid"):"" },
+            headers: { "Content-Type": "application/json"},
           };
           fetch(baseUrl + "/spotify/get-auth-url", requestOptions)
             .then((response) => {
@@ -111,7 +111,7 @@ export default function Room(props) {
       method: "GET",
       credentials: "include",
       crossDomain: "true",
-      headers: { "Content-Type": "application/json","uid":document.getElementById("uid")?document.getElementById("uid"):"" },
+      headers: { "Content-Type": "application/json"},
     };
 
     fetch(baseUrl + "/api/get-room" + "?code=" + roomCode, requestOptions)
@@ -150,7 +150,7 @@ export default function Room(props) {
       method: "GET",
       credentials: "include",
       crossDomain: "true",
-      headers: { "Content-Type": "application/json","uid":document.getElementById("uid")?document.getElementById("uid"):"" },
+      headers: { "Content-Type": "application/json"},
     };
 
     fetch(

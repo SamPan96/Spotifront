@@ -28,7 +28,7 @@ const HomePage = () => {
     let requestOptions = {
       credentials:"include",
       crossDomain: "true",
-      headers: { "Content-Type": "application/json","uid":document.getElementById("uid")?document.getElementById("uid"):"" },
+      headers: { "Content-Type": "application/json"},
       body: {},
     };
     fetch(baseUrl+"/api/check-login", requestOptions)

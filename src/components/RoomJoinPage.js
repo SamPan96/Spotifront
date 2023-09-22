@@ -24,7 +24,7 @@ const RoomJoinPage = () => {
       method: "POST",
       credentials: 'include',
       crossorigin: 'true',
-      headers: { "Content-Type": "application/json","uid":document.getElementById("uid")?document.getElementById("uid"):"" },
+      headers: { "Content-Type": "application/json"},
       body: {},
     };
     if (isLogged==="true") {
@@ -46,7 +46,7 @@ const RoomJoinPage = () => {
       method: "POST",
       credentials: 'include',
       crossorigin: 'true',
-      headers: { "Content-Type": "application/json","uid":document.getElementById("uid")?document.getElementById("uid"):"" },
+      headers: { "Content-Type": "application/json"},
       body: JSON.stringify({
         code: roomCode,
       }),
