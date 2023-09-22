@@ -50,7 +50,7 @@ const DashboardPage = () => {
     fetch(baseUrl+"/api/person-rooms",requestOptions)
       .then((response) => {
         if(!response.status==200){
-          retrieveRooms()
+          // retrieveRooms()
         }
         return response.json();
       })
