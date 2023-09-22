@@ -24,7 +24,7 @@ const LoginPage = () => {
       method: "POST",
       credentials:"include",
       crossDomain: "true",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json"},
       body: JSON.stringify({
         name: name
       }),
@@ -34,6 +34,7 @@ const LoginPage = () => {
       (response)=>{
       return response.json()}
     ).then((data) =>{
+      document.cookie="uid="+data.uid
       setname(data.name);
       setlogged(true);
     })
