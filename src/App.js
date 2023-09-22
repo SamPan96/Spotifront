@@ -43,10 +43,7 @@ const App = () => {
           response.json().then((data)=>setName(data.name))
         } else {
           // Cookies.set('sessionid', response.headers['sessionid'])
-          
-          
           setisLogged("false")
-          
         }
       })
   }

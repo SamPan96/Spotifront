@@ -36,7 +36,7 @@ const CreateRoomPage = (props) => {
       method: "POST",
       credentials:"include",
       crossDomain: "true",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json","uid":document.getElementById("uid")?document.getElementById("uid"):"" },
       body: {},
     };
     if (isLogged === "true") {
@@ -66,7 +66,7 @@ const CreateRoomPage = (props) => {
       method: "POST",
       credentials:"include",
       crossDomain: "true",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json","uid":document.getElementById("uid")?document.getElementById("uid"):"" },
       body: JSON.stringify({
         votes_to_skip: votesToSkip,
         guest_can_pause: guestCanPause,
@@ -87,7 +87,7 @@ const CreateRoomPage = (props) => {
       method: "PATCH",
       credentials:"include",
       crossDomain: "true",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json","uid":document.getElementById("uid")?document.getElementById("uid"):"" },
       body: JSON.stringify({
         votes_to_skip: votesToSkip,
         guest_can_pause: guestCanPause,
