@@ -32,7 +32,7 @@ const SearchBar = (props) => {
       method: "POST",
       credentials: "same-origin",
       crossDomain: "true",
-      headers: { "Content-Type": "application/json","uid":document.getElementById("uid")?document.getElementById("uid"):"" },
+      headers: { "Content-Type": "application/json"},
       body: JSON.stringify({
         room_code: props.room_code,
         uri: uri,
@@ -63,7 +63,7 @@ const SearchBar = (props) => {
     }
     const requestOptions = {
       method: "POST",
-      headers: { "Content-Type": "application/json","uid":document.getElementById("uid")?document.getElementById("uid"):"" },
+      headers: { "Content-Type": "application/json"},
       body: JSON.stringify({
         room_code: props.room_code,
         query: e.target.value,
