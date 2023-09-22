@@ -49,6 +49,9 @@ const DashboardPage = () => {
     };
     fetch(baseUrl+"/api/person-rooms",requestOptions)
       .then((response) => {
+        if(!response.status==200){
+          retrieveRooms()
+        }
         return response.json();
       })
       .then((data) => {
