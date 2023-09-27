@@ -74,7 +74,10 @@ const RoomJoinPage = () => {
 
   function handleTextFieldChange(e) {
     setRoomCode(e.target.value.toUppercase());
-    setError("")
+    console.log(e.target.value.toUppercase());
+    if (error){
+      setError("")
+    }
   }
 
   useEffect(() => {
