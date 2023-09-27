@@ -12,9 +12,10 @@ import { Link } from "react-router-dom";
 import baseUrl from "../global";
 import Footer from "./Footer";
 
-const DashboardPage = () => {
+const DashboardPage = (props) => {
+  const {receivedName} = props
   
-  const [name, setname] = useState("");
+  const [name, setname] = useState(receivedName?receivedName:"");
   const [rooms, setrooms] = useState([]);
   const [uid, setuid] = useState("");
   const [spotifyAutenticated, setspotifyAuthenticated] = useState(false)
