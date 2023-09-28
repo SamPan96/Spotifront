@@ -99,7 +99,20 @@ const RoomJoinPage = () => {
                 Join a Room
               </Typography>
             </Grid>
-            <Grid item xs={12} align="center">
+         <Grid item xs={12} align="center">
+          <FormControl>
+            <TextField
+                error={error}
+                label="Code"
+                placeholder="Enter a Room Code"
+                value={roomCode}
+                helperText={error}
+                variant="outlined"
+                onChange={handleTextFieldChange}
+            />
+          </FormControl>
+        </Grid>
+            /*<Grid item xs={12} align="center">
               <TextField
                 error={error}
                 label="Code"
@@ -111,7 +124,7 @@ const RoomJoinPage = () => {
                 handleTextFieldChange(event.target.value);
                 }}
               />
-            </Grid>
+            </Grid>*/
             <Grid item xs={12} align="center">
             <Grid
             container
