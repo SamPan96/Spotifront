@@ -107,7 +107,9 @@ const RoomJoinPage = () => {
                 value={roomCode}
                 helperText={error}
                 variant="outlined"
-                onChange={handleTextFieldChange}
+                onChange={(event) => {
+                handleTextFieldChange(event.target.value);
+                }}
               />
             </Grid>
             <Grid item xs={12} align="center">
